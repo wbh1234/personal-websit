@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+//    //普通声明函数
+//    function myFun(m,n){
+//        alert(m+n);
+//    }
+//    myFun(3,2)
+//    //使用变量声明函数
+//    var fun=function(m,n){
+//        alert(m+n);
+//
+//    }
+//    fun(3,5)
+//    //使用构造函数声明函数
+//    var nfun=new Function('m','n','alert(m+n)')
+//     nfun(8,8)
+    //将一个函数作为另一个函数的参数
+    function test1(){
+        alert("我是test1")
+    }
+    function test2(f){
+        f()
+    }
+    test2(test1)
+
+</script>
+
+</body>
+</html>
