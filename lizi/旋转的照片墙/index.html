@@ -129,6 +129,9 @@
            changeImg();
 
         };
+        oPrev.onselectstart = oNext.onselectstart =function(){
+          return false;
+        };
 
         oContainer.onmouseover = function(){
           clearInterval(timer);
