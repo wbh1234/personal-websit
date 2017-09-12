@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的轮播图</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style: none;
+        }
+        #container{
+            margin:10px auto;
+            width: 680px;
+            position: relative;
+            
+        }
+        #image{
+            width: 680px;
+            margin:0 auto;
+        }
+        #image img{
+            width: 680px;
+            /*float: left;*/
+            display: none;
+        }
+        #image .selected{
+            display: block;
+        }
+        #list{
+            position: absolute;
+            bottom:3px;
+            right:5px;
+        }
+        #list li{
+            text-align: center;
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            border:1px solid #000000;
+            background:#000000;
+            float: left;
+            cursor: pointer;
+            color: white;
+        }
+        #list .selected{
+            background: orange;
+        }
+        #btu{
+            position: absolute;
+            bottom: 5px;
+            left: 0px;
+        }
+        #prev,#next{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background:#000000;
+            border:1px solid #000000;
+            text-align: center;
+            margin-left:5px;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="image">
+            <img src="img/1.jpg" alt="" class="selected">
+            <img src="img/2.jpg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+        </div>
+        <ul id="list">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+       <div id="btu">
+           <span id="prev" class="selected">&lt;</span>
+           <span id="next">&gt;</span>
+       </div>
+    </div>
+    <script>
+        var oContainer=document.getElementById("container");
+        var oList = document.getElementById("list");
+        var oImage = document.getElementById("image");
+        var aLi = oList.getElementsByTagName("li");
+        var aImg=oImage.getElementsByTagName("img");
+        var oPrev=document.getElementById("prev");
+        var oNext=document.getElementById("next");
+        var nowIndex=0;
+        var timer;
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index=i;
+            aLi[i].onmouseover = function(){
+                nowIndex=this.index;
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].className="";
+                    aImg[i].className="";
+                }
+                this.className = "selected";
+                aImg[this.index].className="selected";
+
+
+            };
+        }
+        oPrev.onclick = oNext.onclick = function(){
+            if(this===oPrev){
+                nowIndex--;
+                if(nowIndex==-1){
+                    nowIndex=aLi.length-1;
+                }
+               changeImg();
+
+
+
+            }else{
+                nowIndex++;
+                if(nowIndex==aLi.length){
+                    nowIndex=0;
+                }
+            }
+           changeImg();
+
+        };
+
+        oContainer.onmouseover = function(){
+          clearInterval(timer);
+        };
+        oContainer.onmouseout = function(){
+            play();
+        };
+        play();
+
+
+        function changeImg(){
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className="";
+                aImg[i].className="";
+            }
+            aLi[nowIndex].className = "selected";
+            aImg[nowIndex].className="selected";
+        }
+        function play(){
+            timer= setInterval(function(){
+                oNext.onclick();
+            },1000);
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>
