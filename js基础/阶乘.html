@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>//在函数的内部自己调用自己，递归
+    function factorial(n){
+        if(n<=1){
+            return 1;
+        }else {
+            return factorial(n - 1) * n;
+        }
+    }
+    console.log(factorial(5));
+
+</script>
+
+</body>
+</html>
